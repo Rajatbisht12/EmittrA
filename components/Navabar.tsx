@@ -1,4 +1,4 @@
-'use cient'
+'use client'
 import React from "react";
 import {SignInButton,
     SignUpButton,
@@ -8,25 +8,27 @@ import {SignInButton,
 import {Button} from "@/components/ui/button"
 import { SearchBar } from "./SearchBar";
 import { ThemeToggle } from "./Theme-toggle";
+import Link from "next/link";
+
 const Navbar = () =>{
     return(
         <div className="w-full h-16 flex items-center justify-center relative border-b">
-        <Button className="absolute left-2 flex items-center space-x-2 bg-green-800 text-l text-white hover:bg-green-500">New Board</Button>
-        <div className="absolute left-[120px] text-2xl text-gray-400">
-    |
-  </div>
-  <div className="absolute left-[140px] text-2xl text-gray-400">
+  <div className="absolute left-[70px] text-2xl text-gray-400">
   <ThemeToggle/>
   </div>
   
   {/* Centered Logo */}
-  <div className="absolute left-1/2 transform -translate-x-1/2 font-bold pacifico text-green-600 text-3xl ">
-    Task Manager
+  <div className="absolute left-1/2 transform -translate-x-1/2 font-bold pacifico text-green-600 text-3xl cursor-pointer">
+  <Link href="/boards">
+      Task Manager
+  </Link>
   </div>
 
   {/* Right Side Auth Buttons */}
   <div className="absolute right-4 flex items-center space-x-2">
-    <SearchBar/>
+    <SignedIn>
+      <SearchBar/>
+    </SignedIn>
     <SignedOut>
       <SignInButton />
       <SignUpButton />
