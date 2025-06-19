@@ -17,12 +17,16 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import Link from 'next/link';
 import { Board, Column } from '@/types';
+import { useUser } from '@clerk/nextjs';
 
 export default function BoardsPage() {
   const { boards, users, addBoard, searchQuery, setSearchQuery } = useBoardStore();
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [newBoardName, setNewBoardName] = useState('');
   const [newBoardDescription, setNewBoardDescription] = useState('');
+  const [newBoardPriority, setNewBoardPriority] = useState<'High' | 'Medium' | 'Low'>('Medium');
+  const [sortOrder, setSortOrder] = useState<'high-to-low' | 'low-to-high'>('high-to-low');
+  const { user } = useUser();
 
   const handleCreateBoard = () => {
     if (newBoardName.trim()) {
@@ -30,17 +34,34 @@ export default function BoardsPage() {
         name: newBoardName,
         description: newBoardDescription,
         createdBy: users[0].id,
+        priority: newBoardPriority,
       });
       setNewBoardName('');
       setNewBoardDescription('');
+      setNewBoardPriority('Medium');
       setIsCreateDialogOpen(false);
     }
+  };
+
+  const priorityValue = (priority: string) => {
+    if (priority === 'High') return 3;
+    if (priority === 'Medium') return 2;
+    if (priority === 'Low') return 1;
+    return 0;
   };
 
   const filteredBoards = boards.filter(board =>
     board.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     board.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const sortedBoards = [...filteredBoards].sort((a, b) => {
+    if (sortOrder === 'high-to-low') {
+      return priorityValue(b.priority) - priorityValue(a.priority);
+    } else {
+      return priorityValue(a.priority) - priorityValue(b.priority);
+    }
+  });
 
   const getTaskCount = (board: Board) => {
     return board.columns.reduce((total: number, column: Column) => total + column.tasks.length, 0);
@@ -96,6 +117,19 @@ export default function BoardsPage() {
                     rows={3}
                   />
                 </div>
+                <div>
+                  <Label htmlFor="board-priority">Priority</Label>
+                  <select
+                    id="board-priority"
+                    value={newBoardPriority}
+                    onChange={(e) => setNewBoardPriority(e.target.value as 'High' | 'Medium' | 'Low')}
+                    className="w-full border rounded px-3 py-2 mt-1"
+                  >
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                  </select>
+                </div>
                 <div className="flex justify-end gap-2">
                   <Button
                     variant="outline"
@@ -123,16 +157,20 @@ export default function BoardsPage() {
               className="pl-10"
             />
           </div>
-          <Button variant="outline" className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            className="flex items-center gap-2"
+            onClick={() => setSortOrder(sortOrder === 'high-to-low' ? 'low-to-high' : 'high-to-low')}
+          >
             <Filter className="h-4 w-4" />
-            Filter
+            Filter ({sortOrder === 'high-to-low' ? 'High → Low' : 'Low → High'})
           </Button>
         </div>
 
         {/* Boards Grid */}
-        {filteredBoards.length > 0 ? (
+        {sortedBoards.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredBoards.map((board) => (
+            {sortedBoards.map((board) => (
               <Link key={board.id} href={`/boards/${board.id}`}>
                 <Card className="hover:shadow-lg transition-shadow cursor-pointer">
                   <CardHeader>

@@ -177,7 +177,7 @@ export function TaskCard({ task, isDragging = false }: TaskCardProps) {
             <div className="mt-2 pt-2 border-t border-border">
               <div className="flex items-center text-xs text-muted-foreground">
                 <User className="h-3 w-3 mr-1" />
-                <span>Created by {createdUser?.name}</span>
+                <span>Assigned to {createdUser?.name}</span>
               </div>
             </div>
           </CardContent>

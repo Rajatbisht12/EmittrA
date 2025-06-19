@@ -35,6 +35,7 @@ export interface Board {
     createdAt: string;
     updatedAt: string;
     columns: Column[];
+    priority: 'High' | 'Medium' | 'Low';
 }
 
 export interface BoardStore {
