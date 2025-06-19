@@ -20,7 +20,7 @@ import { Board, Column } from '@/types';
 import { useUser } from '@clerk/nextjs';
 
 export default function BoardsPage() {
-  const { boards, users, addBoard, searchQuery, setSearchQuery } = useBoardStore();
+  const { boards, addBoard, searchQuery, setSearchQuery } = useBoardStore();
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [newBoardName, setNewBoardName] = useState('');
   const [newBoardDescription, setNewBoardDescription] = useState('');
