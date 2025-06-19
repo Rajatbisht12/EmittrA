@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { SignInButton, SignUpButton } from '@clerk/nextjs';
-import { CheckCircle, Users, Target, Plus } from 'lucide-react';
+import { CheckCircle, Users, Target } from 'lucide-react';
 
 export default function Home() {
   const { isSignedIn, isLoaded } = useAuth();
