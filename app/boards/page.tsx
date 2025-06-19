@@ -29,11 +29,11 @@ export default function BoardsPage() {
   const { user } = useUser();
 
   const handleCreateBoard = () => {
-    if (newBoardName.trim()) {
+    if (newBoardName.trim() && user) {
       addBoard({
         name: newBoardName,
         description: newBoardDescription,
-        createdBy: users[0].id,
+        createdBy: user.id,
         priority: newBoardPriority,
       });
       setNewBoardName('');
