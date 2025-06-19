@@ -4,11 +4,11 @@ import { Search } from "lucide-react";
 
 export function SearchBar() {
   return (
-    <div className="flex w-full max-w-md items-center space-x-2">
-      <Input type="search" placeholder="Search..." className="flex-1" />
-      <Button type="submit" variant="outline">
+    <form className="flex flex-col sm:flex-row w-full max-w-xs sm:max-w-md items-stretch sm:items-center gap-2 sm:gap-0">
+      <Input type="search" placeholder="Search..." className="flex-1 rounded-b-none sm:rounded-b-none sm:rounded-r-none" />
+      <Button type="submit" variant="outline" className="w-full sm:w-auto rounded-t-none sm:rounded-t-none sm:rounded-l-none">
         <Search className="h-4 w-4" />
       </Button>
-    </div>
+    </form>
   );
 }

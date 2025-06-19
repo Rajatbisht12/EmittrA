@@ -78,14 +78,14 @@ export function CreateTaskDialog({ columnId, open, onOpenChange }: CreateTaskDia
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[500px]">
+      <DialogContent className="w-full max-w-xs sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Create New Task</DialogTitle>
+          <DialogTitle className="text-base sm:text-lg">Create New Task</DialogTitle>
         </DialogHeader>
         
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
           {/* Title */}
-          <div className="space-y-2">
+          <div className="space-y-1 sm:space-y-2">
             <Label htmlFor="title">Title</Label>
             <Input
               id="title"
@@ -98,7 +98,7 @@ export function CreateTaskDialog({ columnId, open, onOpenChange }: CreateTaskDia
           </div>
 
           {/* Description */}
-          <div className="space-y-2">
+          <div className="space-y-1 sm:space-y-2">
             <Label htmlFor="description">Description</Label>
             <Textarea
               id="description"
@@ -110,13 +110,13 @@ export function CreateTaskDialog({ columnId, open, onOpenChange }: CreateTaskDia
           </div>
 
           {/* Priority */}
-          <div className="space-y-2">
+          <div className="space-y-1 sm:space-y-2">
             <Label htmlFor="priority">Priority</Label>
             <select
               id="priority"
               value={formData.priority}
               onChange={(e) => setFormData({ ...formData, priority: e.target.value as 'high' | 'medium' | 'low' })}
-              className="flex h-9 w-full rounded-md border border-input bg-white dark:bg-zinc-900 px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+              className="flex h-9 w-full rounded-md border border-input bg-white dark:bg-zinc-900 px-3 py-1 text-xs sm:text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
             >
               <option value="low">Low</option>
               <option value="medium">Medium</option>
@@ -125,7 +125,7 @@ export function CreateTaskDialog({ columnId, open, onOpenChange }: CreateTaskDia
           </div>
 
           {/* Due Date */}
-          <div className="space-y-2">
+          <div className="space-y-1 sm:space-y-2">
             <Label htmlFor="dueDate" className="flex items-center gap-2">
               <Calendar className="h-4 w-4" />
               Due Date
@@ -139,7 +139,7 @@ export function CreateTaskDialog({ columnId, open, onOpenChange }: CreateTaskDia
           </div>
 
           {/* Assigned User */}
-          <div className="space-y-2">
+          <div className="space-y-1 sm:space-y-2">
             <Label htmlFor="assignedTo" className="flex items-center gap-2">
               <User className="h-4 w-4" />
               Assign To
@@ -148,7 +148,7 @@ export function CreateTaskDialog({ columnId, open, onOpenChange }: CreateTaskDia
               id="assignedTo"
               value={formData.assignedTo}
               onChange={(e) => setFormData({ ...formData, assignedTo: e.target.value })}
-              className="flex h-9 w-full rounded-md border border-input bg-white dark:bg-zinc-900 px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+              className="flex h-9 w-full rounded-md border border-input bg-white dark:bg-zinc-900 px-3 py-1 text-xs sm:text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
             >
               <option value="">Unassigned</option>
               {users.map((user: UserType) => (
@@ -160,10 +160,10 @@ export function CreateTaskDialog({ columnId, open, onOpenChange }: CreateTaskDia
           </div>
 
           <DialogFooter>
-            <Button type="button" variant="outline" onClick={handleCancel}>
+            <Button type="button" variant="outline" onClick={handleCancel} className="w-full sm:w-auto">
               Cancel
             </Button>
-            <Button type="submit" disabled={!formData.title.trim()}>
+            <Button type="submit" disabled={!formData.title.trim()} className="w-full sm:w-auto">
               Create Task
             </Button>
           </DialogFooter>

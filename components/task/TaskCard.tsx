@@ -95,11 +95,11 @@ export function TaskCard({ task, isDragging = false }: TaskCardProps) {
         <Card
           {...attributes}
           {...listeners}
-          className="cursor-grab active:cursor-grabbing hover:shadow-md transition-shadow group"
+          className="cursor-grab active:cursor-grabbing hover:shadow-md transition-shadow group w-full max-w-xs sm:max-w-sm mx-auto"
         >
-          <CardContent className="p-3">
+          <CardContent className="p-2 sm:p-3">
             {/* Priority Badge */}
-            <div className="flex items-center justify-between mb-2">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-2 gap-2">
               <Badge
                 variant="outline"
                 className={`text-xs ${getPriorityColor(task.priority)}`}
@@ -107,7 +107,6 @@ export function TaskCard({ task, isDragging = false }: TaskCardProps) {
                 {getPriorityIcon(task.priority)}
                 <span className="ml-1 capitalize">{task.priority}</span>
               </Badge>
-              
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
@@ -133,21 +132,18 @@ export function TaskCard({ task, isDragging = false }: TaskCardProps) {
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
-
             {/* Title */}
-            <h4 className="font-medium text-sm text-foreground mb-2 line-clamp-2">
+            <h4 className="font-medium text-xs sm:text-sm text-foreground mb-2 line-clamp-2">
               {task.title}
             </h4>
-
             {/* Description */}
             {task.description && (
               <p className="text-xs text-muted-foreground mb-3 line-clamp-2">
                 {task.description}
               </p>
             )}
-
             {/* Due Date */}
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
               <div className={`flex items-center text-xs ${
                 isOverdue ? 'text-red-600 dark:text-red-400' : 'text-muted-foreground'
               }`}>
@@ -159,7 +155,6 @@ export function TaskCard({ task, isDragging = false }: TaskCardProps) {
                   })}
                 </span>
               </div>
-
               {/* Assigned User */}
               {assignedUser && (
                 <div className="flex items-center">
@@ -172,7 +167,6 @@ export function TaskCard({ task, isDragging = false }: TaskCardProps) {
                 </div>
               )}
             </div>
-
             {/* Created by info */}
             <div className="mt-2 pt-2 border-t border-border">
               <div className="flex items-center text-xs text-muted-foreground">

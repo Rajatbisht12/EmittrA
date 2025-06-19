@@ -54,15 +54,15 @@ export function ColumnCard({ column, onAddTask }: ColumnCardProps) {
       <div
         ref={setNodeRef}
         style={style}
-        className={`flex-shrink-0 w-80 ${isDragging ? 'opacity-50' : ''}`}
+        className={`flex-shrink-0 w-72 sm:w-80 ${isDragging ? 'opacity-50' : ''}`}
       >
         <Card className="h-fit">
           <CardHeader
             {...attributes}
             {...listeners}
-            className="flex flex-row items-center justify-between space-y-0 pb-2 cursor-grab active:cursor-grabbing"
+            className="flex flex-row items-center justify-between space-y-0 pb-2 cursor-grab active:cursor-grabbing px-2 sm:px-4"
           >
-            <h3 className="font-semibold text-sm text-foreground">
+            <h3 className="font-semibold text-xs sm:text-sm text-foreground">
               {column.title}
               <span className="ml-2 text-xs bg-muted text-muted-foreground px-2 py-1 rounded-full">
                 {column.tasks.length}
@@ -90,7 +90,7 @@ export function ColumnCard({ column, onAddTask }: ColumnCardProps) {
             </DropdownMenu>
           </CardHeader>
           
-          <CardContent className="space-y-2">
+          <CardContent className="space-y-2 px-2 sm:px-4">
             {/* Tasks */}
             <div className="space-y-2 min-h-[100px]">
               {column.tasks
@@ -103,7 +103,7 @@ export function ColumnCard({ column, onAddTask }: ColumnCardProps) {
             {/* Add Task Button */}
             <Button
               variant="ghost"
-              className="w-full justify-start text-muted-foreground hover:text-foreground"
+              className="w-full justify-start text-muted-foreground hover:text-foreground text-xs sm:text-sm"
               onClick={onAddTask}
             >
               <Plus className="mr-2 h-4 w-4" />

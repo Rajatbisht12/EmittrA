@@ -78,17 +78,16 @@ export default function BoardsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-2 sm:px-4 py-6">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">Project Boards</h1>
-            <p className="text-muted-foreground mt-1">Organize and track your team&apos;s work</p>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
+          <div className="w-full">
+            <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Project Boards</h1>
+            <p className="text-sm sm:text-base text-muted-foreground mt-1">Organize and track your team&apos;s work</p>
           </div>
-          
           <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
             <DialogTrigger asChild>
-              <Button className="flex items-center gap-2">
+              <Button className="flex items-center gap-2 w-full sm:w-auto">
                 <Plus className="h-4 w-4" />
                 Create Board
               </Button>
@@ -145,10 +144,9 @@ export default function BoardsPage() {
             </DialogContent>
           </Dialog>
         </div>
-
         {/* Search and Filters */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-8">
-          <div className="relative flex-1">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6">
+          <div className="relative flex-1 w-full">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
             <Input
               placeholder="Search boards..."
@@ -159,7 +157,7 @@ export default function BoardsPage() {
           </div>
           <Button
             variant="outline"
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 w-full sm:w-auto"
             onClick={() => setSortOrder(sortOrder === 'high-to-low' ? 'low-to-high' : 'high-to-low')}
           >
             <Filter className="h-4 w-4" />

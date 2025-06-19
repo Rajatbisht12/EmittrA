@@ -117,24 +117,24 @@ export function BoardDetailView({ board }: BoardDetailViewProps) {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-6">
+      <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-6">
         {/* Header */}
-        <div className="flex items-center gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
           <Link href="/boards">
             <Button variant="ghost" size="sm" className="flex items-center gap-2">
               <ArrowLeft className="h-4 w-4" />
               Back to Boards
             </Button>
           </Link>
-          <div className="flex-1">
-            <h1 className="text-2xl font-bold text-foreground">{board.name}</h1>
+          <div className="flex-1 w-full">
+            <h1 className="text-xl sm:text-2xl font-bold text-foreground">{board.name}</h1>
             {board.description && (
-              <p className="text-muted-foreground text-sm mt-1">{board.description}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground mt-1">{board.description}</p>
             )}
           </div>
           <Button
             onClick={() => setIsCreateColumnOpen(true)}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 w-full sm:w-auto"
           >
             <Plus className="h-4 w-4" />
             Add Column
@@ -142,7 +142,7 @@ export function BoardDetailView({ board }: BoardDetailViewProps) {
         </div>
 
         {/* Search and Filters */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-4 sm:mb-6">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
             <Input
@@ -152,7 +152,7 @@ export function BoardDetailView({ board }: BoardDetailViewProps) {
               className="pl-10"
             />
           </div>
-          <Button variant="outline" className="flex items-center gap-2">
+          <Button variant="outline" className="flex items-center gap-2 w-full sm:w-auto">
             <Filter className="h-4 w-4" />
             Filter
           </Button>
@@ -160,7 +160,7 @@ export function BoardDetailView({ board }: BoardDetailViewProps) {
 
         {/* Board Content */}
         <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
-          <div className="flex gap-6 overflow-x-auto pb-6">
+          <div className="flex gap-4 sm:gap-6 overflow-x-auto pb-4 sm:pb-6">
             <SortableContext
               items={board.columns.map(col => col.id)}
               strategy={horizontalListSortingStrategy}
