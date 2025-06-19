@@ -26,7 +26,6 @@ export function BoardDetailView({ board }: BoardDetailViewProps) {
     setSearchQuery,
     filterPriority,
     filterAssignee,
-    users
   } = useBoardStore();
   
   const [activeTask, setActiveTask] = useState<Task | null>(null);

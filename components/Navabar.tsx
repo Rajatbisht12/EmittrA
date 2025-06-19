@@ -5,7 +5,6 @@ import {SignInButton,
     SignedIn,
     SignedOut,
     UserButton} from "@clerk/nextjs"
-import {Button} from "@/components/ui/button"
 import { SearchBar } from "./SearchBar";
 import { ThemeToggle } from "./Theme-toggle";
 import Link from "next/link";

@@ -16,6 +16,7 @@ import {
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import Link from 'next/link';
+import { Board, Column } from '@/types';
 
 export default function BoardsPage() {
   const { boards, users, addBoard, searchQuery, setSearchQuery } = useBoardStore();
@@ -41,11 +42,11 @@ export default function BoardsPage() {
     board.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const getTaskCount = (board: any) => {
-    return board.columns.reduce((total: number, column: any) => total + column.tasks.length, 0);
+  const getTaskCount = (board: Board) => {
+    return board.columns.reduce((total: number, column: Column) => total + column.tasks.length, 0);
   };
 
-  const getProgressPercentage = (board: any) => {
+  const getProgressPercentage = (board: Board) => {
     const totalTasks = getTaskCount(board);
     if (totalTasks === 0) return 0;
     
@@ -61,7 +62,7 @@ export default function BoardsPage() {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-3xl font-bold text-foreground">Project Boards</h1>
-            <p className="text-muted-foreground mt-1">Organize and track your team's work</p>
+            <p className="text-muted-foreground mt-1">Organize and track your team&apos;s work</p>
           </div>
           
           <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
