@@ -8,7 +8,8 @@ const isPublicRoute = createRouteMatcher([
 ])
 
 export default clerkMiddleware((auth, req) => {
-  if (!isPublicRoute(req)) auth().then()
+  if (isPublicRoute(req)) return; 
+  auth();
 })
 
 export const config = {
